@@ -37,6 +37,7 @@ class AthenaCredentials(Credentials):
     schema: str
     endpoint_url: Optional[str] = None
     work_group: Optional[str] = None
+    role_arn: Optional[str] = None
     aws_profile_name: Optional[str] = None
     poll_interval: float = 1.0
     _ALIASES = {"catalog": "database"}
@@ -143,6 +144,7 @@ class AthenaConnectionManager(SQLConnectionManager):
                 region_name=creds.region_name,
                 schema_name=creds.schema,
                 work_group=creds.work_group,
+                role_arn=creds.role_arn,
                 cursor_class=AthenaCursor,
                 formatter=AthenaParameterFormatter(),
                 poll_interval=creds.poll_interval,
